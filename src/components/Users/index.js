@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
+import Spinner from "../General/Spinner";
+
+import * as usersActions from "../../actions/usersActions";
 
 class Users extends Component {
-  // async componentDidMount() {
-  //   let response = await axios.get(
-  //     "https://jsonplaceholder.typicode.com/users"
-  //   );
-  //   this.setState({ users: response.data });
-  // }
+  componentDidMount() {
+    this.props.getAll();
+  }
 
   putFiles = () =>
     this.props.users.map((user) => (
@@ -19,22 +18,26 @@ class Users extends Component {
       </tr>
     ));
 
-  render() {
-    console.log(this.props);
+  insertTable = () => {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
     return (
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Website</th>
-            </tr>
-          </thead>
-          <tbody>{this.putFiles()}</tbody>
-        </table>
-      </div>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Website</th>
+          </tr>
+        </thead>
+        <tbody>{this.putFiles()}</tbody>
+      </table>
     );
+  };
+
+  render() {
+    return <div>{this.insertTable()}</div>;
   }
 }
 
@@ -42,4 +45,4 @@ const mapStateToProps = (reducers) => {
   return reducers.usersReducer;
 };
 
-export default connect(mapStateToProps, {})(Users);
+export default connect(mapStateToProps, usersActions)(Users);
