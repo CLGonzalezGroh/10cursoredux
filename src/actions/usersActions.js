@@ -16,7 +16,7 @@ export const getAll = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ERROR,
-      payload: error.message,
+      payload: ["Algo salió mal, intente más tarde.", error.message],
     });
   }
 };
