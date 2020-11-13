@@ -1,13 +1,13 @@
 import axios from "axios";
-import { GET_ALL, LOADING, ERROR } from "../types/usersTypes";
+import { GET_ALL, LOADING, ERROR } from "../types/publicationsTypes";
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllPublications = () => async (dispatch) => {
   dispatch({
     type: LOADING,
   });
   try {
-    let response = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
     );
     dispatch({
       type: GET_ALL,
