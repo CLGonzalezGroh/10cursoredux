@@ -16,7 +16,7 @@ export const getAllUsers = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ERROR,
-      payload: ["Something was wrong, try later", error.message],
+      payload: ["User info unavailable", error.message],
     });
   }
 };

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .margin {
   margin: 100px;
@@ -31,4 +32,8 @@ body {
 
 .red {
   color: red;
+}
+
+.pub_title {
+  border-top: 1px solid black;
 }

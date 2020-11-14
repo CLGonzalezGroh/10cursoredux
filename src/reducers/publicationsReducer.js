@@ -1,4 +1,8 @@
-import { GET_ALL, LOADING, ERROR } from "../types/publicationsTypes";
+import {
+  UPDATE_PUBLICATIONS,
+  LOADING,
+  ERROR,
+} from "../types/publicationsTypes";
 
 const INITIAL_STATE = {
   publications: [],
@@ -8,11 +12,12 @@ const INITIAL_STATE = {
 
 const publicationsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_ALL:
+    case UPDATE_PUBLICATIONS:
       return {
         ...state,
         publications: action.payload,
         loading: false,
+        error: "",
       };
     case LOADING:
       return { ...state, loading: true };
