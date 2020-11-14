@@ -6,8 +6,6 @@ import Spinner from "../General/Spinner";
 import Fatal from "../General/Fatal";
 import Comments from "./Comments";
 
-const comments = "";
-
 class Publications extends Component {
   async componentDidMount() {
     const {
@@ -81,17 +79,19 @@ class Publications extends Component {
       <div
         key={post.id}
         className="pub_title"
-        onClick={() => this.showComments(pub_key, com_key, comments)}
+        onClick={() => this.showComments(pub_key, com_key, post.comments)}
       >
         <h2>{post.title}</h2>
         <h3>{post.body}</h3>
-        {post.open ? <Comments /> : ""}
+        {post.open ? <Comments comments={post.comments} /> : ""}
       </div>
     ));
 
   showComments = (pub_key, com_key, comments) => {
     this.props.openClose(pub_key, com_key);
-    this.props.getComments(pub_key, com_key);
+    if (!comments.length) {
+      this.props.getComments(pub_key, com_key);
+    }
   };
 
   render() {
