@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import * as tasksActions from "../../actions/tasksActions";
 import Fatal from "../General/Fatal";
 import Spinner from "../General/Spinner";
 
 class Tasks extends Component {
   componentDidMount() {
-    this.props.getAllTasks();
+    if (!Object.keys(this.props.tasks).length) {
+      this.props.getAllTasks();
+    }
   }
 
   insertTasks = (user_id) => {
@@ -39,8 +42,14 @@ class Tasks extends Component {
   };
 
   render() {
-    console.log(this.props);
-    return <div>{this.showContent()}</div>;
+    return (
+      <div>
+        <Link to="/tasks/save">
+          <button>Save</button>
+        </Link>
+        {this.showContent()}
+      </div>
+    );
   }
 }
 
